@@ -125,3 +125,11 @@ body {
 [data-type="number"]:active {
   background: var(--grey-200);
 }
+[data-type="operator"]:focus, 
+[data-type="number"]:focus {
+  outline: solid 1px var(--grey-500);
+}
+
+[data-state="selected"] {
+  background: var(--grey-200);
+}

@@ -13,7 +13,6 @@ keys.addEventListener('click', event => {
   const { type } = key.dataset;
   const { previousKeyType } = calculator.dataset;
 
-  //* Is this a number key??
   if(type === 'number'){
     if (displayValue === '0') {
       display.textContent = keyValue;
@@ -22,15 +21,34 @@ keys.addEventListener('click', event => {
     } else {
       display.textContent = displayValue + keyValue;
     }
-
-    calculator.dataset.previousKeyType = 'number';
   }
 
-  //* Is this a number operator??
   if(type === 'operator') {
-    console.log(key);
+    // Remove prev selected key 
+    const operatorKeys = keys.querySelectorAll('[data-type="operator"]');
+    operatorKeys.forEach(el => {el.dataset.state = ''})
 
-    calculator.dataset.previousKeyType = 'operator';
+    key.dataset.state = 'selected';
+
+    calculator.dataset.firstNumber = displayValue;
+    calculator.dataset.operator = key.dataset.key;
   }
+
+  if(type === 'equal') {
+    // Perform calculations
+    const firstNumber = parseInt(calculator.dataset.firstNumber);
+    const operator = calculator.dataset.operator;
+    const secondNumber = parseInt(displayValue);
+
+    let result = '';
+    if (operator === 'plus') result = firstNumber + secondNumber
+    if (operator === 'minus') result = firstNumber - secondNumber
+    if (operator === 'times') result = firstNumber * secondNumber
+    if (operator === 'divide') result = firstNumber / secondNumber
+
+    display.textContent = result;
+  }
+
+  calculator.dataset.previousKeyType = type;
 })
 
