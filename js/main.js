@@ -49,6 +49,14 @@ keys.addEventListener('click', event => {
     display.textContent = result;
   }
 
+  if(type === 'clear') {
+    display.textContent= '0';
+    delete calculator.dataset.firstNumber;
+    delete calculator.dataset.operator;
+    const operatorKeys = keys.querySelectorAll('[data-type="operator"]');
+    operatorKeys.forEach(el => {el.dataset.state = ''})
+  }
+
   calculator.dataset.previousKeyType = type;
 })
 

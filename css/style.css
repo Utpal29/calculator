@@ -117,16 +117,19 @@ body {
   background: var(--grey-100);
 }
 
-[data-type="number"] {
+[data-type="number"],
+[data-type="clear"] {
   background: #fff;
 }
 
 [data-type="operator"]:active, 
-[data-type="number"]:active {
+[data-type="number"]:active,
+[data-type="clear"]:active {
   background: var(--grey-200);
 }
 [data-type="operator"]:focus, 
-[data-type="number"]:focus {
+[data-type="number"]:focus,
+[data-type="clear"]:focus {
   outline: solid 1px var(--grey-500);
 }
 
